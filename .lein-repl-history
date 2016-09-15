@@ -1,1 +1,3 @@
 (start-server)
+exit
+(start-server)
