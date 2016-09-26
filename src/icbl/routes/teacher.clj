@@ -460,6 +460,11 @@
                                                        ;soalpath "http://localhost/resources/public"
                                                        })))
 
+(defn teacher-search-proset-bp [act]
+  (let [data (db/get-data "select * from pelajaranbs order by pelajaran" 2)]
+    (layout/render "admin/search-proset.html" {:act act :data data})))
+
+
 (defn handle-teacher-catat-bp [ko]
   (let [kode (subs ko 1 (count ko))
         ckode (db/get-data (str "select kode from bpguru where kode='" kode "' and
@@ -654,7 +659,7 @@
         (teacher-lihat-sekaligus kode))
 
   (GET "/teacher-lihat-bp" []
-      (layout/render "admin/search-proset.html" {:act "/teacher-search-proset"}))
+      (teacher-search-proset-bp "/teacher-search-proset"))
   (POST "/teacher-search-proset" [pel ket]
       (handle-teacher-search-proset pel ket "/teacher-lihat-soal-bp"))
   (POST "/teacher-lihat-soal-bp" [pel kode]
