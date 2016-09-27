@@ -20,3 +20,4 @@ exit
 (exit)
 (start-server)
 (exit)
+(start-server)
