@@ -124,7 +124,10 @@
 
 (defn handle-teacher-upload [id kode file]
   (do
-    (io/upload-file (str "resources/public/proset/" id "/" kode) file)
+    (if (vector? file)
+      (doseq [i file]
+          (io/upload-file (str "resources/public/proset/" id "/" kode) i))
+      (io/upload-file (str "resources/public/proset/" id "/" kode) file))
     (layout/render "teacher/upload.html" {:kode kode})))
 
 (defn teacher-buat-kunci [kode]
