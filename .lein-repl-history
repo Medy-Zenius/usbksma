@@ -21,3 +21,8 @@ exit
 (start-server)
 (exit)
 (start-server)
+exit
+(start-server)
+(use 'icbl.models.updatedb)
+(update "mujagurumat" "MATEMATIKA")
+exit
