@@ -6,6 +6,7 @@
             [icbl.models.db :as db]
             [noir.session :as session]
             [clojure.data.json :as json]
+            [icbl.routes.lib.lib :as lb]
             ))
 
 (defn teacher-home []
@@ -689,5 +690,13 @@
        (handle-teacher-lihat-catatan-bp (session/get :id) "/teacher-hapus-bp-1"))
   (POST "/teacher-hapus-bp-1" [kode]
         (handle-teacher-hapus-bp-1 (subs kode 1 (count kode))))
+  
+  (GET "/soal-html" []
+       (let [dat (first (lb/parse-dat lb/data))]
+         (layout/render "teacher/soal-html.html"
+                      {:soal (first dat)
+                       :jaw1 (nth dat 1)
+                       :jaw2 (nth dat 2)
+                       :jaw3 (nth dat 3)
+                       :jaw4 (nth dat 4)})))
 )
-
