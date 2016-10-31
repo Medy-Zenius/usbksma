@@ -1,0 +1,26 @@
+.login-background {
+	background-image: url("../img/bigstock--130810589.jpg");
+	background-size:100% 100%;
+}
+
+.panel-login {
+	width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 375px;
+}
+
+.text-center {
+	text-align: center;	
+}
+
+.btn-bluegreen, .btn-bluegreen:hover {
+	background-color: #42f4d7;
+	color:#000000;
+}
+
+@media screen and (min-width: 768px) {
+    .panel-login{
+    	margin-top:90px;	
+    }
+}
