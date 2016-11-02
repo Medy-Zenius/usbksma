@@ -3,15 +3,34 @@
 	background-size:cover;
 }
 
+.soal-background-dark {
+	background-color: #333;
+	color:#fff;
+}
+
+.nm b{
+	margin-top:3px;
+}
 .middle-absolute {
 	margin: auto;
     position:absolute;
     top: 0; left: 0; bottom: 0; right: 0;
 }
 
+.timer-panel {
+	margin-left:auto;
+	margin-right:auto;
+	width: 200px;
+	color:#000;
+}
+
 .h-middle {
 	margin-left: auto;
 	margin-right:auto;
+}
+
+.form-tracker {
+	width:76px;
 }
 
 .panel-login {
@@ -37,6 +56,12 @@
 	color:#000000;
 }
 
+.btn-bluegreen-bordered, .btn-bluegreen-bordered:hover {
+	background-color: #42f4d7;
+	color:#000000;
+	border:1px solid #333;
+}
+
 .panel-bluegreen{
 	background-color: #42f4d7;
 	color:#ffffff;
@@ -45,4 +70,65 @@
 .label-middle > * {
 	height:34px;
 	line-height: 34px;
+}
+
+.answer-table {
+	border-radius: 25px;
+}
+
+.answer-table tr td{
+	border:1px solid #337ab7;
+	width:30px;
+	height:30px;
+	text-align: center;
+}
+
+.n-active {
+	background-color: #42f4d7;
+}
+
+.nextback {
+	margin-left:10px;
+	margin-top:6px;
+}
+
+.nbarrows *{
+	margin-left:5px;
+}
+
+/*ARROW*/
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  
+  border-bottom: 14px solid #286090;
+}
+
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  
+  border-top: 14px solid #286090;
+}
+
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  
+  border-left: 14px solid #286090;
+}
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent; 
+  
+  border-right:14px solid #286090; 
 }

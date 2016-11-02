@@ -1,7 +1,7 @@
 (ns icbl.routes.lib.lib)
 
 ;;Parse data
-(def data (slurp "C:/Users/medy/Desktop/SOAL.txt"))
+(def data ["sss"])
 
 (defn p-dat [dat]
   (partition-by #(= \newline %) dat))
