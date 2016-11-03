@@ -69,6 +69,13 @@
         wDOM("jsn"+vno,jw);
         jwb[vno]=jw;
         save_ls();
+
+        var ansl = 'ABCDES-';
+        for(i=0; i<ansl.length;i++){
+            document.getElementById('ans-' + ansl[i]).classList.remove('answered');
+            document.getElementById('ans-'+ jw).classList.add('answered');
+        }
+        
     }
 
     function get_resp(urla,funct)
@@ -123,25 +130,25 @@
         document.getElementById("soal").innerHTML='<div><img src='+urla+'></div>';
         scnt+='<div class="btn-group">';
         if (nj[no-1] == "1"){
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("A")>A</button>';
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("B")>B</button>';
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("C")>C</button>';
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("D")>D</button>';
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("E")>E</button>';
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("-")>-</button>';
+          scnt+='<button id="ans-A" class="btn btn-lg btn-bluegreen-bordered" onClick=func("A")>A</button>';
+          scnt+='<button id="ans-B" class="btn btn-lg btn-bluegreen-bordered" onClick=func("B")>B</button>';
+          scnt+='<button id="ans-C" class="btn btn-lg btn-bluegreen-bordered" onClick=func("C")>C</button>';
+          scnt+='<button id="ans-D" class="btn btn-lg btn-bluegreen-bordered" onClick=func("D")>D</button>';
+          scnt+='<button id="ans-E" class="btn btn-lg btn-bluegreen-bordered" onClick=func("E")>E</button>';
+          scnt+='<button id="ans--" class="btn btn-lg btn-bluegreen-bordered" onClick=func("-")>-</button>';
         }
         if (nj[no-1] == "2"){
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("B")>BENAR</button>';
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("S")>SALAH</button>';
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("-")>-</button>';
+          scnt+='<button id="ans-B" class="btn btn-lg btn-bluegreen-bordered" onClick=func("B")>BENAR</button>';
+          scnt+='<button id="ans-S" class="btn btn-lg btn-bluegreen-bordered" onClick=func("S")>SALAH</button>';
+          scnt+='<button id="ans--" class="btn btn-lg btn-bluegreen-bordered" onClick=func("-")>-</button>';
         }
         if (nj[no-1] == "3"){
           vupto=nu[no-1];
           ju=vupto.charCodeAt(0)-65;
           for (i=0;i<=ju;i++){
-            scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("'+vab.substring(i,i+1)+'")>'+ vab.substring(i,i+1) +'</button>';
+            scnt+='<button id="ans-'+ vab.substring(i,i+1) +'" class="btn btn-lg btn-bluegreen-bordered" onClick=func("'+vab.substring(i,i+1)+'")>'+ vab.substring(i,i+1) +'</button>';
           }
-          scnt+='<button class="btn btn-lg btn-bluegreen-bordered" onClick=func("-")>-</button>';
+          scnt+='<button id="ans--" class="btn btn-lg btn-bluegreen-bordered" onClick=func("-")>-</button>';
         }
         scnt+='</div>';
         document.getElementById("pilihan1").innerHTML=scnt;
@@ -163,6 +170,12 @@
         var td = document.getElementById("n" + no);
         td.classList = "n-active";
 
+        var ansl = 'ABCDES-';
+        for(i=0; i<ansl.length;i++){
+            document.getElementById('ans-' + ansl[i]).classList.remove('answered');
+            document.getElementById('ans-'+ jwb[no-1]).classList.add('answered');
+        }
+
         document.getElementById("o"+vno).selected = "true";
         document.getElementById("xdarit").innerHTML = no+" dari "+jsoal;
       }
@@ -182,6 +195,12 @@
         }
         var td = document.getElementById("n" + no);
         td.classList = "n-active";
+
+        var ansl = 'ABCDES-';
+        for(i=0; i<ansl.length;i++){
+            document.getElementById('ans-' + ansl[i]).classList.remove('answered');
+            document.getElementById('ans-'+ jwb[no-1]).classList.add('answered');
+        }
 
         document.getElementById("o"+vno).selected = "true";
         document.getElementById("xdarit").innerHTML = no+" dari "+jsoal;
@@ -302,7 +321,7 @@
 <div class="container">
 
 
-<div class="panel panel-info">
+<div class="panel panel-bluegreen bordered">
    <div class="panel-heading">
      <h1 class="text-center" id="title">
        USBK - Kode Soal:{{kodeto}} - {{data.pelajaran}} - {{data.keterangan}}
@@ -326,14 +345,18 @@
 <br>
 <div class="row">
   <div class="col-sm-4">
-    <select class="form-control form-tracker" id="sel_no" onchange="ganti_nomer()">
+    <div class="select-table">
+    <a href ="#" class="arrow-left pull-left" onClick="fback()"></a>
+    <select class="form-control form-tracker pull-left" id="sel_no" onchange="ganti_nomer()">
       <script>
       for (i=0;i<jsoal;i++){
       document.write('<option id="o'+i+'" value='+i+'>'+(i+1)+' ('+jwb[i]+')</option>');
       }
       </script>
     </select>
+      <a href ="#" class="arrow-right pull-left" onClick="fnext()"></a>
     <br>
+    </div>
 <div class="row">
   <div class="col-sm-12">
     <table class="answer-table pull-left">
@@ -353,10 +376,6 @@
         </script>
       </tr>
     </table>
-    <div class="pull-left nbarrows">
-      <a href ="#" class="arrow-left pull-left" onClick="fback()"></a>
-      <a href ="#" class="arrow-right pull-right" onClick="fnext()"></a>
-    </div>
   </div>
   
 </div> 
@@ -368,8 +387,8 @@
      <div class="col-sm-12">
        <div id="pilihan1" class="pull-left"></div>
        <div class="btn-group pull-left nextback">
-        <button class="btn btn-primary" id="back_button" name="button_back" onClick="fback()">BACK</button>
-        <button class="btn btn-primary" id="next_button" name="button_next" onClick="fnext()">NEXT</button>
+        <button class="btn btn-bluegreen-bordered" id="back_button" name="button_back" onClick="fback()">BACK</button>
+        <button class="btn btn-bluegreen-bordered" id="next_button" name="button_next" onClick="fnext()">NEXT</button>
       </div>
      </div>
 
@@ -389,7 +408,7 @@
 <br>
 <div class="row">
   <div class="col-sm-12">
-    <button class="btn btn-lg btn-success" id="sls_button" onClick="selesai()">KUMPULKAN SOAL</button>
+    <button class="btn btn-lg btn-brightgreen" id="sls_button" onClick="selesai()">KUMPULKAN JAWABAN</button>
   </div>
   <div class="col-sm-12">
     <span id="pesan"></span><span id="ya_button"></span><span id="no_button"></span>
