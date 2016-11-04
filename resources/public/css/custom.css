@@ -8,6 +8,11 @@
 	color:#fff;
 }
 
+.guru-background {
+	background-image: url("../img/teacher.jpg");
+	background-size: cover;
+}
+
 .nm b{
 	margin-top:3px;
 }
