@@ -5,7 +5,7 @@
 
 .soal-background-dark {
 	background-color: #333;
-	color:#fff;
+	color:#fff !important;
 }
 
 .guru-background {
@@ -101,6 +101,7 @@
 	width:30px;
 	height:30px;
 	text-align: center;
+	color:inherit;
 }
 
 .n-active {
