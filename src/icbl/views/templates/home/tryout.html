@@ -171,13 +171,14 @@
         td.classList = "n-active";
 
         var ansl = 'ABCDES-';
+
+        document.getElementById("o"+vno).selected = "true";
+        document.getElementById("xdarit").innerHTML = no+" dari "+jsoal;
+
         for(i=0; i<ansl.length;i++){
             document.getElementById('ans-' + ansl[i]).classList.remove('answered');
             document.getElementById('ans-'+ jwb[no-1]).classList.add('answered');
         }
-
-        document.getElementById("o"+vno).selected = "true";
-        document.getElementById("xdarit").innerHTML = no+" dari "+jsoal;
       }
     }
     function fnext(){
@@ -197,13 +198,13 @@
         td.classList = "n-active";
 
         var ansl = 'ABCDES-';
+
+        document.getElementById("o"+vno).selected = "true";
+        document.getElementById("xdarit").innerHTML = no+" dari "+jsoal;
         for(i=0; i<ansl.length;i++){
             document.getElementById('ans-' + ansl[i]).classList.remove('answered');
             document.getElementById('ans-'+ jwb[no-1]).classList.add('answered');
         }
-
-        document.getElementById("o"+vno).selected = "true";
-        document.getElementById("xdarit").innerHTML = no+" dari "+jsoal;
       }
     }
     function ganti_nomer(){

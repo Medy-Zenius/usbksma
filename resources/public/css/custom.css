@@ -5,11 +5,12 @@
 
 .soal-background-dark {
 	background-color: #333;
-	color:#fff;
+	color:#fff !important;
 }
 
-.lstore-alert {
-	margin-top:200px;
+.guru-background {
+	background-image: url("../img/teacher.jpg");
+	background-size: cover;
 }
 
 .nm b{
@@ -100,6 +101,7 @@
 	width:30px;
 	height:30px;
 	text-align: center;
+	color:inherit;
 }
 
 .n-active {
@@ -167,4 +169,12 @@
 .answered, .answered:hover{
 	background-color:#6d6d6a;
 	color:#333;
+}
+
+/*MEDIA QUERY*/
+
+@media (min-width: 768px) {
+    .lstore-alert {
+		margin-top:200px;
+	}
 }
