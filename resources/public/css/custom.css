@@ -5,7 +5,12 @@
 
 .soal-background-dark {
 	background-color: #333;
-	color:#fff;
+	color:#fff !important;
+}
+
+.guru-background {
+	background-image: url("../img/teacher.jpg");
+	background-size: cover;
 }
 
 .nm b{
@@ -96,6 +101,7 @@
 	width:30px;
 	height:30px;
 	text-align: center;
+	color:inherit;
 }
 
 .n-active {
