@@ -92,8 +92,17 @@
 	line-height: 34px;
 }
 
+#sel_no {
+	display:none;
+}
+
 .answer-table {
 	border-radius: 25px;
+}
+
+.answer-table a{
+	display:block;
+	color:inherit;
 }
 
 .answer-table tr td{
@@ -162,6 +171,14 @@
   border-right:14px solid #42f4d7; 
 }
 /*ARROWS ENDS*/
+
+.arrow-right{
+	margin-left:5px;
+}
+
+.arrow-left {
+	margin-right:5px;
+}
 #ans--{
 	background-color: #42f4d7 !important;
 }
