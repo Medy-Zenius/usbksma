@@ -267,7 +267,7 @@
     }
 
     function selesai(){
-        var vby='<button class="btn btn-success" onClick="simpan()">YA</button>';
+        var vby='<button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm" onClick="simpan()">YA</button>';
         var vbn='<button class="btn btn-success" onClick="batal()">TIDAK</button>';
         taktif(true);
         wDOM('pesan','<span class="bg-danger text-danger">Yakin selesai mengerjakan Ujian ?  </span>');
@@ -312,6 +312,8 @@
            wDOM('no_button',"");
         }else {
            wDOM('pesan', '<span class="bg-success text-success"> Data telah disimpan di server. Nilai Ujian Kamu: '+vdata.nilai+ '   </span>');
+           var nres = "<div>Nilai Ujian kamu " + vdata.nilai + "</div>";
+           document.getElementById("mod-content").innerHTML = nres;
            wDOM('ya_button',vby);
            wDOM('no_button','');
            localStorage.clear();
@@ -416,11 +418,24 @@
   <div class="col-sm-12">
     <span id="pesan"></span><span id="ya_button"></span><span id="no_button"></span>
   </div>
-  
+
 </div>
 <br>
 <br>
 
+</div>
+<!--MODAL-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div id="mod-content"></div> 
+        <a href="/home-logout"><button class="btn btn-success">Logout</button></a>
+      </div>
+      
+    </div>
+  </div>
 </div>
 {% endblock %}
 
