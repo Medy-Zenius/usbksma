@@ -226,9 +226,6 @@
         }
     }
     function habis_waktu() {
-        var vdata=JSON.parse(data);
-        var nres = "<div>Nilai Ujian kamu " + vdata.nilai + "</div>";
-        document.getElementById("mod-content").innerHTML = nres;
         var vby='<button class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm" onClick="simpan()">KIRIM</button>';
         var vbn='<a href="/"><button class="btn btn-warning">BATAL</button></a>';
         taktif(true);
