@@ -113,6 +113,10 @@
 	color:inherit;
 }
 
+.modal-body {
+	text-align: center;
+}
+
 .n-active {
 	background-color: #42f4d7;
 }
@@ -186,6 +190,19 @@
 .answered, .answered:hover{
 	background-color:#6d6d6a;
 	color:#333;
+}
+
+/*STARS COLORS*/
+.s-bronze {
+	color:#0c8cfc;
+}
+
+.s-silver {
+	color:#b80cfc;
+}
+
+.s-gold {
+	color:#FFDF00;
 }
 
 /*MEDIA QUERY*/
