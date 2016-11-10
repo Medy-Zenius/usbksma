@@ -5,7 +5,6 @@
 
 .soal-background-dark {
 	background-color: #333;
-	color:#fff !important;
 }
 
 .guru-background {
@@ -138,6 +137,8 @@
 	margin-left:3px;
 }
 
+.
+
 /*ARROW*/
 .arrow-up {
   width: 0; 
@@ -203,6 +204,11 @@
 
 .s-gold {
 	color:#FFDF00;
+}
+
+/*STARS ANIMATE*/
+#bronze1, #bronze2, #bronze3, #silver, #gold {
+	display:none;
 }
 
 /*MEDIA QUERY*/
