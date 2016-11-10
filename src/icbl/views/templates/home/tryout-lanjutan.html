@@ -325,7 +325,7 @@
 </div>
 <br>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-12">
     <div class="select-table">
     
     <select class="form-control form-tracker pull-left" id="sel_no" onchange="ganti_nomer()">
@@ -341,22 +341,28 @@
 <div class="row">
   <div class="col-sm-12">
     <a href ="#" class="arrow-left pull-left" onClick="fback()"></a>
-    <table id="ans-table" class="answer-table pull-left">
-      <tr>
-        <script>
-        for (i=1;i<=jsoal;i++){
-        document.write('<td id="n' + i+ '"><a href="#" onclick="ganti_nomer('+ i +')">' + i + '</a></td>');
+    <table id="ans-table" class="answer- pull-left">
+      <script>
+      var tbrow = Math.ceil(jsoal/30);
+      var rlimit = 30;
+      function hrem (x, y){
+        if((x-y)>=0){
+          return x-y;
+        } else {
+          return 0;
+        }
+      }
+      for (j=0; j<tbrow;j++){
+        for(i=1+(j*rlimit);i<=jsoal-hrem(jsoal, (j+1)*rlimit);i++){
+          document.write('<td id="n' + i+ '"><a href="#" onclick="ganti_nomer('+ i +')">' + i + '</a></td>');
+        }
+        document.write('<tr id="r'+j+'"></tr>');
+        for(k=1+(j*rlimit);k<=jsoal-hrem(jsoal, (j+1)*rlimit);k++){
+          document.getElementById('r'+(Math.ceil(k/rlimit)-1)).innerHTML += '<td id="jsn'+ (k-1) + '">' + jwb[k-1] + '</td>';
+        }
         document.getElementById("n1").className = "n-active";
-        }
-        </script>
-      </tr>
-      <tr>
-        <script>
-        for (j=0;j<jsoal;j++){
-        document.write('<td id="jsn'+ j + '">' + jwb[j] + '</td>');
-        }
-        </script>
-      </tr>
+      }
+      </script>
     </table>
     <a href ="#" class="arrow-right pull-left" onClick="fnext()"></a>
   </div>

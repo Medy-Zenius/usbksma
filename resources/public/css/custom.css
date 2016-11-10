@@ -95,16 +95,16 @@
 	display:none;
 }
 
-.answer-table {
+#ans-table {
 	border-radius: 25px;
 }
 
-.answer-table a{
+#ans-table a{
 	display:block;
 	color:inherit;
 }
 
-.answer-table tr td{
+#ans-table tr td{
 	border:1px solid #337ab7;
 	width:30px;
 	height:30px;
