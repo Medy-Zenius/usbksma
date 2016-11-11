@@ -1,3 +1,20 @@
+/*ANIMATION*/
+@keyframes star-op {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes star-ex {
+	from {font-size:0;}
+	to{font-size:38px;}
+}
+
+@keyframes star-ex2 {
+	from {font-size:0;}
+	to{font-size:48px;}
+}
+/*ANIMATION end*/
+
 .login-background {
 	background-image: url("../img/bigstock--130810589.jpg");
 	background-size:cover;
@@ -207,8 +224,12 @@
 }
 
 /*STARS ANIMATE*/
-#bronze1, #bronze2, #bronze3, #silver, #gold {
-	display:none;
+#bronze1, #bronze2, #bronze3 {
+	opacity: 0;
+}
+
+#silver, #gold {
+	font-size:0px;
 }
 
 /*MEDIA QUERY*/
