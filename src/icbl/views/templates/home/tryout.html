@@ -311,9 +311,44 @@
            wDOM('ya_button',"");
            wDOM('no_button',"");
         }else {
-           wDOM('pesan', '<span class="bg-success text-success"> Data telah disimpan di server. Nilai Ujian Kamu: '+vdata.nilai+'/' + vdata.skala+ '   </span>');
-           var nres = "<div>Nilai Ujian kamu " + vdata.nilai+'/' + vdata.skala+ "</div>";
+           var snilai = vdata.nilai/vdata.skala * 100;
+
+           wDOM('pesan', '<span class="bg-success text-success"> Data telah disimpan di server. Nilai Ujian Kamu: <b id="snilai">'+vdata.nilai+'</b>   </span>');
+           var nres = '<div>Nilai Ujian kamu <b id="snilaim">' + vdata.nilai+"</b></div>";
            document.getElementById("mod-content").innerHTML = nres;
+
+           if (snilai < 30){
+              document.getElementById('snilai').classList='s-bronze';
+              document.getElementById('snilaim').classList='s-bronze';
+              document.getElementById('bronze1').setAttribute('style','display:initial');
+           } else if (snilai < 60){
+              document.getElementById('snilai').classList='s-bronze';
+              document.getElementById('snilaim').classList='s-bronze';
+              document.getElementById('bronze1').setAttribute('style','display:initial');
+              document.getElementById('bronze2').setAttribute('style','display:initial');
+           } else if (snilai < 80){
+              document.getElementById('snilai').classList='s-bronze';
+              document.getElementById('snilaim').classList='s-bronze';
+              document.getElementById('bronze1').setAttribute('style','display:initial');
+              document.getElementById('bronze2').setAttribute('style','display:initial');
+              document.getElementById('bronze3').setAttribute('style','display:initial');
+           } else if (snilai < 90){
+              document.getElementById('snilai').classList='s-silver';
+              document.getElementById('snilaim').classList='s-silver';
+              document.getElementById('bronze1').setAttribute('style','display:initial');
+              document.getElementById('bronze2').setAttribute('style','display:initial');
+              document.getElementById('bronze3').setAttribute('style','display:initial');
+              document.getElementById('silver').setAttribute('style','display:initial');
+           } else if (snilai <= 100){
+              document.getElementById('snilai').classList='s-gold';
+              document.getElementById('snilaim').classList='s-gold';
+              document.getElementById('bronze1').setAttribute('style','display:initial');
+              document.getElementById('bronze2').setAttribute('style','display:initial');
+              document.getElementById('bronze3').setAttribute('style','display:initial');
+              document.getElementById('silver').setAttribute('style','display:initial');
+              document.getElementById('gold').setAttribute('style','display:initial');
+           }
+
            wDOM('ya_button',vby);
            wDOM('no_button','');
            localStorage.clear();
