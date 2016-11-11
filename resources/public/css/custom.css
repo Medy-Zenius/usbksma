@@ -15,6 +15,10 @@
 }
 /*ANIMATION end*/
 
+#snilaim {
+	font-size:57px;
+}
+
 .login-background {
 	background-image: url("../img/bigstock--130810589.jpg");
 	background-size:cover;
