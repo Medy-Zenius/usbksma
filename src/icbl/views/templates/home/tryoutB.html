@@ -244,11 +244,11 @@
       function counterf (){
         if (val >= nval){
           clearInterval(reptr);
-          elem.innerHTML = val;
-          countercol(val, n);
+          elem.innerHTML = nval;
+          countercol(nval, n);
         } else {
-          val++;
           elem.innerHTML = val;
+          val++;
           countercol(val, n);
         }
       }
