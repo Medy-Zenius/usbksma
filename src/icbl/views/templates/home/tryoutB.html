@@ -225,6 +225,35 @@
             document.getElementById('ans-'+ jwb[no-1]).classList.add('answered');
         }
     }
+
+    function countercol (n, skala) {
+      nscale = n/skala *100;
+      if (0 <= nscale && nscale < 80){
+        document.getElementById('snilaim').classList='s-bronze';
+      } else if (80 <= nscale && nscale < 90) {
+        document.getElementById('snilaim').classList='s-silver';
+      } else if (90 <= nscale && nscale <= 100){
+        document.getElementById('snilaim').classList='s-gold';
+      }
+    }
+
+    function counter (nval, n){
+      var val = 0;
+      var elem = document.getElementById('snilaim');
+      var reptr = setInterval(counterf, 1800/n);
+      function counterf (){
+        if (val >= nval){
+          clearInterval(reptr);
+          elem.innerHTML = val;
+          countercol(val, n);
+        } else {
+          val++;
+          elem.innerHTML = val;
+          countercol(val, n);
+        }
+      }
+    }
+
     function habis_waktu() {
         var vby='<button class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm" onClick="simpan()">KIRIM</button>';
         var vbn='<a href="/"><button class="btn btn-warning">BATAL</button></a>';
@@ -311,9 +340,40 @@
            wDOM('ya_button',"");
            wDOM('no_button',"");
         }else {
-           wDOM('pesan', '<span class="bg-success text-success"> Data telah disimpan di server. Nilai Ujian Kamu: '+vdata.nilai+ '   </span>');
-           var nres = "<div>Nilai Ujian kamu " + vdata.nilai + "</div>";
+           var snilai = vdata.nilai/vdata.skala * 100;
+
+           wDOM('pesan', '<span class="bg-success text-success"> Data telah disimpan di server. Nilai Ujian Kamu: <b id="snilai">'+vdata.nilai+'</b>   </span>');
+           var nres = '<div><b id="snilaim">' + vdata.nilai+"</b></div>";
            document.getElementById("mod-content").innerHTML = nres;
+           counter(vdata.nilai, vdata.skala);
+
+           if (snilai < 30){
+              document.getElementById('snilai').classList='s-bronze';
+              document.getElementById('bronze1').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-fill-mode: forwards;');
+           } else if (snilai < 60){
+              document.getElementById('snilai').classList='s-bronze';
+              document.getElementById('bronze1').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-fill-mode: forwards;');
+              document.getElementById('bronze2').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-delay: 0.5s; animation-fill-mode: forwards;');
+           } else if (snilai < 80){
+              document.getElementById('snilai').classList='s-bronze';
+              document.getElementById('bronze1').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-fill-mode: forwards;');
+              document.getElementById('bronze2').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-delay: 0.5s; animation-fill-mode: forwards;');
+              document.getElementById('bronze3').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-delay: 1s; animation-fill-mode: forwards;');
+           } else if (snilai < 90){
+              document.getElementById('snilai').classList='s-silver';
+              document.getElementById('bronze1').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-fill-mode: forwards;');
+              document.getElementById('bronze2').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-delay: 0.5s; animation-fill-mode: forwards;');
+              document.getElementById('bronze3').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-delay: 1s; animation-fill-mode: forwards;');
+              document.getElementById('silver').setAttribute('style','animation-name: star-ex; animation-duration: 0.6s; animation-delay: 1.6s; animation-fill-mode: forwards;');
+           } else if (snilai <= 100){
+              document.getElementById('snilai').classList='s-gold';
+              document.getElementById('bronze1').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-fill-mode: forwards;');
+              document.getElementById('bronze2').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-delay: 0.5s; animation-fill-mode: forwards;');
+              document.getElementById('bronze3').setAttribute('style','animation-name: star-op; animation-duration: 1s; animation-delay: 1s; animation-fill-mode: forwards;');
+              document.getElementById('silver').setAttribute('style','animation-name: star-ex; animation-duration: 0.6s; animation-delay: 1.6s; animation-fill-mode: forwards;');
+              document.getElementById('gold').setAttribute('style','animation-name: star-ex2; animation-duration: 0.6s; animation-delay: 2.1s; animation-fill-mode: forwards;');
+           }
+
            wDOM('ya_button',vby);
            wDOM('no_button','');
            localStorage.clear();
