@@ -1,3 +1,24 @@
+/*ANIMATION*/
+@keyframes star-op {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes star-ex {
+	from {font-size:0;}
+	to{font-size:38px;}
+}
+
+@keyframes star-ex2 {
+	from {font-size:0;}
+	to{font-size:48px;}
+}
+/*ANIMATION end*/
+
+#snilaim {
+	font-size:57px;
+}
+
 .login-background {
 	background-image: url("../img/bigstock--130810589.jpg");
 	background-size:cover;
@@ -5,7 +26,6 @@
 
 .soal-background-dark {
 	background-color: #333;
-	color:#fff !important;
 }
 
 .guru-background {
@@ -92,16 +112,29 @@
 	line-height: 34px;
 }
 
-.answer-table {
+#sel_no {
+	display:none;
+}
+
+#ans-table {
 	border-radius: 25px;
 }
 
-.answer-table tr td{
+#ans-table a{
+	display:block;
+	color:inherit;
+}
+
+#ans-table tr td{
 	border:1px solid #337ab7;
 	width:30px;
 	height:30px;
 	text-align: center;
 	color:inherit;
+}
+
+.modal-body {
+	text-align: center;
 }
 
 .n-active {
@@ -124,6 +157,8 @@
 .select-table .arrow-right{
 	margin-left:3px;
 }
+
+.
 
 /*ARROW*/
 .arrow-up {
@@ -162,6 +197,14 @@
   border-right:14px solid #42f4d7; 
 }
 /*ARROWS ENDS*/
+
+.arrow-right{
+	margin-left:5px;
+}
+
+.arrow-left {
+	margin-right:5px;
+}
 #ans--{
 	background-color: #42f4d7 !important;
 }
@@ -169,6 +212,28 @@
 .answered, .answered:hover{
 	background-color:#6d6d6a;
 	color:#333;
+}
+
+/*STARS COLORS*/
+.s-bronze {
+	color:#0c8cfc;
+}
+
+.s-silver {
+	color:#b80cfc;
+}
+
+.s-gold {
+	color:#FFDF00;
+}
+
+/*STARS ANIMATE*/
+#bronze1, #bronze2, #bronze3 {
+	opacity: 0;
+}
+
+#silver, #gold {
+	font-size:0px;
 }
 
 /*MEDIA QUERY*/
