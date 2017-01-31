@@ -6,6 +6,7 @@
             [icbl.models.db :as db]
             [noir.session :as session]
             [clojure.data.json :as json]
+            [icbl.routes.lib.lib :as lb]
             ))
 
 (defn teacher-home []
@@ -53,7 +54,10 @@
                                 :jenis (apply str (repeat (Integer/parseInt jsoal) "1"))
                                 :upto (apply str (repeat (Integer/parseInt jsoal) "-"))
                                 :acak "0"
-                                :status "0"})
+                                :status "0"
+                                :skala 10
+                                :nbenar 1
+                                :nsalah 0})
       (layout/render "teacher/pesan.html" {:pesan (str "Berhasil daftarkan proset!")})
       (catch Exception ex
                   (layout/render "teacher/pesan.html" {:pesan (str "Gagal daftarkan proset! error: " ex)}))))
@@ -68,7 +72,7 @@
         datum (db/get-data (str "select * from proset where kode='" postkode "'") 1)]
     (layout/render "teacher/edit-proset.html" {:datum datum :kode kode})))
 
-(defn teacher-update-proset [kode pel ket jsoal waktu acak status]
+(defn teacher-update-proset [kode pel ket jsoal waktu skala nbenar nsalah acak status]
   (let [postkode (subs kode 1 (count kode))
         datum (db/get-data (str "select kunci,jenis,upto from proset where kode='" postkode "'") 1)
         oldkunci (datum :kunci)
@@ -97,7 +101,10 @@
                      :status status
                      :kunci newkunci
                      :jenis newjenis
-                     :upto newupto})
+                     :upto newupto
+                     :skala (Integer/parseInt skala)
+                     :nbenar (Integer/parseInt nbenar)
+                     :nsalah (Integer/parseInt nsalah)})
     (layout/render "teacher/pesan.html" {:pesan (str "Berhasil update proset!")})
     (catch Exception ex
                   (layout/render "teacher/pesan.html" {:pesan (str "Gagal update proset! error: " ex)})))))
@@ -457,16 +464,17 @@
     (layout/render "admin/list-proset.html" {:data data :action act :pel pel :ket ket})))
 
 (defn handle-teacher-lihat-soal-bp [pel kode]
-  (let [datum (db/get-data (str "select * from bankproset where kode='" kode "'") 1)]
+  (let [postkode (subs kode 1 (count kode))
+        datum (db/get-data (str "select * from bankproset where kode='" postkode "'") 1)]
     (layout/render "admin/view-soal-sekaligus.html" {:datum datum
                                                        :pel pel
+                                                       :kode kode
                                                        ;soalpath "http://localhost/resources/public"
                                                        })))
 
 (defn teacher-search-proset-bp [act]
   (let [data (db/get-data "select * from pelajaranbs order by pelajaran" 2)]
     (layout/render "admin/search-proset.html" {:act act :data data})))
-
 
 (defn handle-teacher-catat-bp [ko]
   (let [kode (subs ko 1 (count ko))
@@ -534,8 +542,8 @@
        (teacher-lihat-proset (session/get :id)))
   (POST "/teacher-edit-proset" [kode]
         (teacher-edit-proset kode))
-  (POST "/teacher-update-proset" [kode pel ket jsoal waktu acak status]
-        (teacher-update-proset kode pel ket jsoal waktu acak status))
+  (POST "/teacher-update-proset" [kode pel ket jsoal waktu skala nbenar nsalah acak status]
+        (teacher-update-proset kode pel ket jsoal waktu skala nbenar nsalah acak status))
 
   (GET "/teacher-upload-file" []
        (teacher-pilih-proset "L" (session/get :id) "/teacher-upload-file"))
@@ -662,11 +670,11 @@
         (teacher-lihat-sekaligus kode))
 
   (GET "/teacher-lihat-bp" []
-      (teacher-search-proset-bp "/teacher-search-proset"))
+       (teacher-search-proset-bp "/teacher-search-proset"))
   (POST "/teacher-search-proset" [pel ket]
       (handle-teacher-search-proset pel ket "/teacher-lihat-soal-bp"))
   (POST "/teacher-lihat-soal-bp" [pel kode]
-        (handle-teacher-lihat-soal-bp pel (subs kode 1 (count kode))))
+        (handle-teacher-lihat-soal-bp pel kode))
 
   (GET "/teacher-catat-bp" []
       (layout/render "teacher/catat-bp.html"))
@@ -682,5 +690,13 @@
        (handle-teacher-lihat-catatan-bp (session/get :id) "/teacher-hapus-bp-1"))
   (POST "/teacher-hapus-bp-1" [kode]
         (handle-teacher-hapus-bp-1 (subs kode 1 (count kode))))
+  
+  (GET "/soal-html" []
+       (let [dat (first (lb/parse-dat lb/data))]
+         (layout/render "teacher/soal-html.html"
+                      {:soal (first dat)
+                       :jaw1 (nth dat 1)
+                       :jaw2 (nth dat 2)
+                       :jaw3 (nth dat 3)
+                       :jaw4 (nth dat 4)})))
 )
-
