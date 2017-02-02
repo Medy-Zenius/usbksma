@@ -24,7 +24,7 @@
   :ring {:handler icbl.handler/app
          :init icbl.handler/init
          :destroy icbl.handler/destroy
-         :port 5050}
+         :port 4321}
   :aot :all
   :profile
   {:production
